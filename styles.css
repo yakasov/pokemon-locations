@@ -1,0 +1,52 @@
+body {
+  margin: 16px;
+}
+
+.max-width {
+  display: table;
+  width: 100%;
+}
+
+.name-column {
+  float: left;
+  width: 15%;
+}
+
+.encounter-column {
+  float: left;
+  width: 48%;
+}
+
+.third-width {
+  float: left;
+  width: 33%;
+}
+
+.subcol0 {
+  float: left;
+  width: 12.5%;
+}
+
+.subcol1 {
+  float: left;
+  width: 30%;
+}
+
+.subcol2 {
+  float: left;
+  width: 12.5%;
+}
+
+.subcol3 {
+  float: left;
+  width: 12.5%;
+}
+
+.subcol4 {
+  float: left;
+  width: 32.5%;
+}
+
+.no-line-height {
+  line-height: 20px;
+}
