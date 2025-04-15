@@ -14,7 +14,7 @@ body {
 
 .encounter-column {
   float: left;
-  width: 48%;
+  width: 85%;
 }
 
 .third-width {
@@ -49,4 +49,8 @@ body {
 
 .no-line-height {
   line-height: 20px;
+}
+
+.solid-line {
+  border-top: 1px solid #444;
 }
