@@ -84,7 +84,8 @@ const versions = ["heartgold", "platinum", "white", "white-2"];
 
 async function getIdsCSV() {
   (await fetch("./ids.csv").then((r) => r.text()))
-    .split("\r\n")
+    .replaceAll("\r", "")
+    .split("\n")
     .map((e) => e.split(","))
     .forEach((e) => (ids[`${e[1]}`] = e[0]));
 }
@@ -310,8 +311,3 @@ async function createDivs() {
     }
   });
 }
-
-(async () => {
-  await getIdsCSV();
-  await createDivs();
-})();
