@@ -13,5 +13,11 @@
     Enable JavaScript (or wait a little bit)!
   </body>
 
-  <script src="./script.js" defer></script>
+  <script src="./script.js"></script>
+  <script defer>
+    (async () => {
+      await getIdsCSV();
+      await createDivs();
+    })();
+  </script>
 </html>
