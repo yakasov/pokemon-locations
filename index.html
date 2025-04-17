@@ -10,14 +10,445 @@
   </head>
 
   <body>
-    Enable JavaScript (or wait a little bit)!
+    <div class="max-width">
+      <div class="half-width">
+        <h2>Game Versions</h2>
+        <div class="max-width" id="checkboxes">
+          <h3>Generation I</h3>
+          <table id="gen1">
+            <tr class="row-width">
+              <td>
+                <input
+                  id="checkbox-red"
+                  type="checkbox"
+                  onchange="updateVersion('red')"
+                />
+                Red
+              </td>
+              <td>
+                <input
+                  id="checkbox-blue"
+                  type="checkbox"
+                  onchange="updateVersion('blue')"
+                />
+                Blue
+              </td>
+            </tr>
+            <tr class="row-width">
+              <td>
+                <input
+                  id="checkbox-yellow"
+                  type="checkbox"
+                  onchange="updateVersion('yellow')"
+                />
+                Yellow
+              </td>
+            </tr>
+          </table>
+
+          <h3>Generation II</h3>
+          <table id="gen2">
+            <tr class="row-width">
+              <td>
+                <input
+                  id="checkbox-gold"
+                  type="checkbox"
+                  onchange="updateVersion('gold')"
+                />
+                Gold
+              </td>
+              <td>
+                <input
+                  id="checkbox-silver"
+                  type="checkbox"
+                  onchange="updateVersion('silver')"
+                />
+                Silver
+              </td>
+            </tr>
+            <tr class="row-width">
+              <td>
+                <input
+                  id="checkbox-crystal"
+                  type="checkbox"
+                  onchange="updateVersion('crystal')"
+                />
+                Crystal
+              </td>
+            </tr>
+          </table>
+
+          <h3>Generation III</h3>
+          <table id="gen3">
+            <tr class="row-width">
+              <td>
+                <input
+                  id="checkbox-ruby"
+                  type="checkbox"
+                  onchange="updateVersion('ruby')"
+                />
+                Ruby
+              </td>
+              <td>
+                <input
+                  id="checkbox-sapphire"
+                  type="checkbox"
+                  onchange="updateVersion('sapphire')"
+                />
+                Sapphire
+              </td>
+            </tr>
+            <tr class="row-width">
+              <td>
+                <input
+                  id="checkbox-firered"
+                  type="checkbox"
+                  onchange="updateVersion('firered')"
+                />
+                FireRed
+              </td>
+              <td>
+                <input
+                  id="checkbox-leafgreen"
+                  type="checkbox"
+                  onchange="updateVersion('leafgreen')"
+                />
+                LeafGreen
+              </td>
+            </tr>
+            <tr class="row-width">
+              <td>
+                <input
+                  id="checkbox-emerald"
+                  type="checkbox"
+                  onchange="updateVersion('emerald')"
+                />
+                Emerald
+              </td>
+            </tr>
+          </table>
+
+          <h3>Generation IV</h3>
+          <table id="gen4">
+            <tr class="row-width">
+              <td>
+                <input
+                  id="checkbox-diamond"
+                  type="checkbox"
+                  onchange="updateVersion('diamond')"
+                />
+                Diamond
+              </td>
+              <td>
+                <input
+                  id="checkbox-pearl"
+                  type="checkbox"
+                  onchange="updateVersion('pearl')"
+                />
+                Pearl
+              </td>
+            </tr>
+            <tr class="row-width">
+              <td>
+                <input
+                  id="checkbox-platinum"
+                  type="checkbox"
+                  onchange="updateVersion('platinum')"
+                />
+                Platinum
+              </td>
+            </tr>
+            <tr class="row-width">
+              <td>
+                <input
+                  id="checkbox-heartgold"
+                  type="checkbox"
+                  onchange="updateVersion('heartgold')"
+                />
+                HeartGold
+              </td>
+              <td>
+                <input
+                  id="checkbox-soulsilver"
+                  type="checkbox"
+                  onchange="updateVersion('soulsilver')"
+                />
+                SoulSilver
+              </td>
+            </tr>
+          </table>
+
+          <h3>Generation V</h3>
+          <table id="gen5">
+            <tr class="row-width">
+              <td>
+                <input
+                  id="checkbox-black"
+                  type="checkbox"
+                  onchange="updateVersion('black')"
+                />
+                Black
+              </td>
+              <td>
+                <input
+                  id="checkbox-white"
+                  type="checkbox"
+                  onchange="updateVersion('white')"
+                />
+                White
+              </td>
+            </tr>
+            <tr class="row-width">
+              <td>
+                <input
+                  id="checkbox-black-2"
+                  type="checkbox"
+                  onchange="updateVersion('black-2')"
+                />
+                Black 2
+              </td>
+              <td>
+                <input
+                  id="checkbox-white-2"
+                  type="checkbox"
+                  onchange="updateVersion('white-2')"
+                />
+                White 2
+              </td>
+            </tr>
+          </table>
+
+          <h3>Generation VI</h3>
+          <table id="gen6">
+            <tr class="row-width">
+              <td>
+                <input
+                  id="checkbox-x"
+                  type="checkbox"
+                  onchange="updateVersion('x')"
+                />
+                X
+              </td>
+              <td>
+                <input
+                  id="checkbox-y"
+                  type="checkbox"
+                  onchange="updateVersion('y')"
+                />
+                Y
+              </td>
+            </tr>
+            <tr class="row-width">
+              <td>
+                <input
+                  id="checkbox-omega-ruby"
+                  type="checkbox"
+                  onchange="updateVersion('omega-ruby')"
+                />
+                Omega Ruby
+              </td>
+              <td>
+                <input
+                  id="checkbox-alpha-sapphire"
+                  type="checkbox"
+                  onchange="updateVersion('alpha-sapphire')"
+                />
+                Alpha Sapphire
+              </td>
+            </tr>
+          </table>
+
+          <h3>Generation VII</h3>
+          <table id="gen7">
+            <tr class="row-width">
+              <td>
+                <input
+                  id="checkbox-sun"
+                  type="checkbox"
+                  onchange="updateVersion('sun')"
+                />
+                Sun
+              </td>
+              <td>
+                <input
+                  id="checkbox-moon"
+                  type="checkbox"
+                  onchange="updateVersion('moon')"
+                />
+                Moon
+              </td>
+            </tr>
+            <tr class="row-width">
+              <td>
+                <input
+                  id="checkbox-ultra-sun"
+                  type="checkbox"
+                  onchange="updateVersion('ultra-sun')"
+                />
+                Ultra Sun
+              </td>
+              <td>
+                <input
+                  id="checkbox-ultra-moon"
+                  type="checkbox"
+                  onchange="updateVersion('ultra-moon')"
+                />
+                Ultra Moon
+              </td>
+            </tr>
+            <tr class="row-width">
+              <td>
+                <input
+                  id="checkbox-lets-go-pikachu"
+                  type="checkbox"
+                  onchange="updateVersion('lets-go-pikachu')"
+                />
+                Let's Go, Pikachu!
+              </td>
+              <td>
+                <input
+                  id="checkbox-lets-go-eevee"
+                  type="checkbox"
+                  onchange="updateVersion('lets-go-eevee')"
+                />
+                Let's Go, Eevee!
+              </td>
+            </tr>
+          </table>
+
+          <h3>Generation VIII</h3>
+          <table id="gen8">
+            <tr class="row-width">
+              <td>
+                <input
+                  id="checkbox-sword"
+                  type="checkbox"
+                  onchange="updateVersion('sword')"
+                />
+                Sword
+              </td>
+              <td>
+                <input
+                  id="checkbox-shield"
+                  type="checkbox"
+                  onchange="updateVersion('shield')"
+                />
+                Shield
+              </td>
+            </tr>
+            <tr class="row-width">
+              <td>
+                <input
+                  id="checkbox-the-isle-of-armor"
+                  type="checkbox"
+                  onchange="updateVersion('the-isle-of-armor')"
+                />
+                The Isle of Armor
+              </td>
+              <td>
+                <input
+                  id="checkbox-the-crown-tundra"
+                  type="checkbox"
+                  onchange="updateVersion('the-crown-tundra')"
+                />
+                The Crown Tundra
+              </td>
+            </tr>
+            <tr class="row-width">
+              <td>
+                <input
+                  id="checkbox-brilliant-diamond"
+                  type="checkbox"
+                  onchange="updateVersion('brilliant-diamond')"
+                />
+                Brilliant Diamond
+              </td>
+              <td>
+                <input
+                  id="checkbox-shining-pearl"
+                  type="checkbox"
+                  onchange="updateVersion('shining-pearl')"
+                />
+                Shining Pearl
+              </td>
+            </tr>
+            <tr class="row-width">
+              <td>
+                <input
+                  id="checkbox-legends-arceus"
+                  type="checkbox"
+                  onchange="updateVersion('legends-arceus')"
+                />
+                Legends: Arceus
+              </td>
+            </tr>
+          </table>
+
+          <h3>Generation IX</h3>
+          <table id="gen9">
+            <tr class="row-width">
+              <td>
+                <input
+                  id="checkbox-scarlet"
+                  type="checkbox"
+                  onchange="updateVersion('scarlet')"
+                />
+                Scarlet
+              </td>
+              <td>
+                <input
+                  id="checkbox-violet"
+                  type="checkbox"
+                  onchange="updateVersion('violet')"
+                />
+                Violet
+              </td>
+            </tr>
+            <tr class="row-width">
+              <td>
+                <input
+                  id="checkbox-the-teal-mask"
+                  type="checkbox"
+                  onchange="updateVersion('the-teal-mask')"
+                />
+                The Teal Mask
+              </td>
+              <td>
+                <input
+                  id="checkbox-the-indigo-mask"
+                  type="checkbox"
+                  onchange="updateVersion('the-indigo-mask')"
+                />
+                The Indigo Mask
+              </td>
+            </tr>
+          </table>
+
+          <h3>Unknown Generations</h3>
+          <table id="gen0"></table>
+        </div>
+      </div>
+
+      <div class="half-width">
+        <h2>Pokémon List Input</h2>
+        <textarea
+          id="inputTextArea"
+          placeholder="Input Pokémon names, one per line."
+          rows="20"
+        >
+        </textarea>
+        <button onclick="(async () => { await getPokemon(); })()">
+          Get Pokémon Data
+        </button>
+      </div>
+    </div>
   </body>
 
   <script src="./script.js"></script>
   <script defer>
     (async () => {
-      await getIdsCSV();
-      await createDivs();
+      loadFromLocalStorage();
+      await getVersions();
     })();
   </script>
 </html>

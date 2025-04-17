@@ -1,88 +1,119 @@
 const P = new Pokedex.Pokedex();
 const ids = {};
-const inputs = [
-  "Victini",
-  "Tepig",
-  "Pignite",
-  "Emboar",
-  "Oshawott",
-  "Dewott",
-  "Samurott",
-  "Sunflora",
-  "Flaaffy",
-  "Ampharos",
-  "Lucario",
-  "Magmar",
-  "Magmortar",
-  "Elekid",
-  "Electabuzz",
-  "Electivire",
-  "Swoobat",
-  "Conkeldurr",
-  "Skitty",
-  "Petilil",
-  "Lilligant",
-  "Cleffa",
-  "Espeon",
-  "Umbreon",
-  "Leafeon",
-  "Glaceon",
-  "Darmanitan",
-  "Rufflet",
-  "Braviary",
-  "Mandibuzz",
-  "Cofagrigus",
-  "Tirtouga",
-  "Carracosta",
-  "Budew",
-  "Solosis",
-  "Duosion",
-  "Reuniclus",
-  "Pinsir",
-  "BlitzleSwanna",
-  "Escavalier",
-  "Accelgor",
-  "Probopass",
-  "Claydol",
-  "Galvantula",
-  "Ferrothorn",
-  "Eelektross",
-  "Fraxure",
-  "Haxorus",
-  "Beheeyem",
-  "Lampent",
-  "Chandelure",
-  "Tornadus",
-  "Thundurus",
-  "Landorus",
-  "Drapion",
-  "Numel",
-  "Camerupt",
-  "Drifloon",
-  "Shuppet",
-  "Wingull",
-  "Bisharp",
-  "Tympole",
-  "Weavile",
-  "Vanillite",
-  "Swinub",
-  "Beldum",
-  "Golett",
-  "Deino",
-  "Hydreigon",
-  "Slakoth",
-  "Igglybuff",
-  "Larvitar",
-  "Reshiram",
-  "Keldeo",
-  "Meloetta",
-  "Genesect",
-];
 const noEncounters = [];
 const noEntries = [];
-const versions = ["heartgold", "platinum", "white", "white-2"];
+const versions = [
+  "red",
+  "blue",
+  "yellow",
+  "gold",
+  "silver",
+  "crystal",
+  "ruby",
+  "sapphire",
+  "emerald",
+  "firered",
+  "leafgreen",
+  "diamond",
+  "pearl",
+  "platinum",
+  "heartgold",
+  "soulsilver",
+  "black",
+  "white",
+  "black-2",
+  "white-2",
+  "x",
+  "y",
+  "omega-ruby",
+  "alpha-sapphire",
+  "sun",
+  "moon",
+  "ultra-sun",
+  "ultra-moon",
+  "lets-go-pikachu",
+  "lets-go-eevee",
+  "sword",
+  "shield",
+  "the-isle-of-armor",
+  "the-crown-tundra",
+  "brilliant-diamond",
+  "shining-pearl",
+  "legends-arceus",
+  "scarlet",
+  "violet",
+  "the-teal-mask",
+  "the-indigo-disk",
+];
+const neatenedVersions = versions.map(neatenName);
+const fetchedVersions = [];
+let selectedVersions = [];
+let inputs;
+
+async function getVersions() {
+  (await P.getVersions()).results
+    .map((v) => v.name)
+    .forEach((v) => fetchedVersions.push(v));
+
+  const unknownDiv = document.getElementById("gen0");
+  fetchedVersions.forEach((v) => {
+    if (!versions.includes(v)) {
+      unknownDiv.innerHTML += `
+      <tr class="row-width">
+        <td>
+          <input type="checkbox" onchange="updateVersion('${v}')" />
+          ${neatenName(v)}
+        </td>
+      </tr>
+    `;
+    }
+  });
+}
+
+function updateVersion(v) {
+  if (selectedVersions.includes(v)) {
+    selectedVersions = selectedVersions.filter((e) => e !== v);
+  } else {
+    selectedVersions.push(v);
+  }
+}
+
+function loadFromLocalStorage() {
+  let load = JSON.parse(localStorage.getItem("pokemon"));
+  if (load) {
+    document.getElementById("inputTextArea").value = load.inputs.join("\n");
+    selectedVersions = load.selectedVersions;
+    selectedVersions.forEach(
+      (v) => (document.getElementById(`checkbox-${v}`).checked = true)
+    );
+  }
+}
+
+function saveToLocalStorage() {
+  localStorage.setItem(
+    "pokemon",
+    JSON.stringify({
+      inputs,
+      selectedVersions,
+    })
+  );
+}
+
+async function getPokemon() {
+  // Convert to Set to remove duplicate entries
+  inputs = [
+    ...new Set(
+      document.getElementById("inputTextArea").value.split("\n").map(neatenName)
+    ),
+  ];
+  saveToLocalStorage();
+  await getIdsCSV();
+  await createDivs();
+}
 
 async function getIdsCSV() {
+  // Converts ids.csv from 001,Bulbasaur into { Bulbasaur: "001", ... } dict
+  // will need fetching when more Pokemon release
   (await fetch("./ids.csv").then((r) => r.text()))
     .replaceAll("\r", "")
     .split("\n")
@@ -103,10 +134,7 @@ async function buildEncounterInfo(k, version) {
       return [];
     }
   } catch (e) {
-    if (!noEntries.includes(k)) {
-      noEntries.push(k);
-    }
-
+    // Happens if getPokemonEncounterAreas returns a 404
     return [];
   }
 
@@ -141,8 +169,17 @@ async function buildEncounterInfo(k, version) {
 }
 
 function neatenName(s) {
-  s = s.replaceAll("-", " ");
-  return s.charAt(0).toUpperCase() + s.slice(1);
+  s = s
+    .replaceAll("-", " ")
+    .split(" ")
+    .map((t) => t.charAt(0).toUpperCase() + t.slice(1))
+    .join(" ")
+    .trim();
+  return s === "Xd"
+    ? "XD"
+    : s.includes("Lets Go")
+    ? `Let's Go, ${s.split(" ").slice(-1)[0]}!`
+    : s;
 }
 
 async function getEvoAndHatchText(k) {
@@ -201,8 +238,10 @@ function expandChain(e, k, arr = [], evoDetails = []) {
       e.evolves_to.length > 1
         ? e.evolves_to.filter((ev) => neatenName(ev.species.name) === k)[0]
         : e.evolves_to[0];
-    evoDetails = getAdditionalEvoInfo(evolvesTo, evoDetails);
-    return expandChain(evolvesTo, k, arr, evoDetails);
+    if (evolvesTo) {
+      evoDetails = getAdditionalEvoInfo(evolvesTo, evoDetails);
+      return expandChain(evolvesTo, k, arr, evoDetails);
+    }
   }
 
   return [arr, evoDetails];
@@ -225,10 +264,11 @@ function getAdditionalEvoInfo(details, evoDetails) {
 
 async function createDivs() {
   let divs = [];
-  Object.entries(ids).forEach(async ([k, v]) => {
-    if (inputs.includes(k)) {
+  inputs.forEach(async (k) => {
+    const v = ids[k];
+    if (v) {
       const encounterInfo = [];
-      for (const version of versions) {
+      for (const version of selectedVersions) {
         encounterInfo.push(...(await buildEncounterInfo(k, version)));
       }
 
@@ -244,6 +284,9 @@ async function createDivs() {
         return;
       }
 
+      encounterInfo.sort(
+        (a, b) => neatenedVersions.indexOf(a) - neatenedVersions.indexOf(b)
+      );
       let encounterText = "";
       for (let i = 0; i < 5; i++) {
         encounterText += `<div class="subcol${i}">
@@ -308,6 +351,8 @@ async function createDivs() {
           .sort((a, b) => a[0] - b[0])
           .map((d) => d[1])
           .join("");
+    } else {
+      noEntries.push(k);
     }
   });
 }
